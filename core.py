@@ -1,25 +1,32 @@
 import speech_recognition as sr
 import warnings
 import pyttsx3
-import module_attestation as ma
-import module_tools as mt
+
 import random
 import time
 
 
+
+import module_users as mu
+import module_spotify as ms
+import module_attestation as ma
+import module_tools as mt
+import CONFIG
+
 print('Initialisation')
+mu.loadUsers()
+
+
 active = True
 engine = pyttsx3.init()
 voice = engine.getProperty('voices')[0]  # the french voice
 engine.setProperty('voice', voice.id)
-
 warnings.filterwarnings('ignore')
 
 
 def audio():
     r = sr.Recognizer()
     with sr.Microphone() as source:
-        print('parler')
         audio = r.listen(source)
 
     data = ''
@@ -30,7 +37,7 @@ def audio():
         print('Erreur')
     except sr.RequestError as e:
         print('Erreur requete')
-    return data
+    return data.lower()
 
 
 def reponse(text):
@@ -63,6 +70,8 @@ def extinction():
     reponse(random.choice(formulesReponse))
     print("je m'eteint")
 
+print("billy prêt")
+reponse("je suis prêt")
 
 while active == True:
     text = audio()
@@ -81,6 +90,8 @@ while active == True:
         elif 'extinction' in text:
             extinction()
             break
+        elif 'spotify' in text or CONFIG.getConfig().spotify == False:
+            rep += ms.commande(text)
 
     if rep != '':
         reponse(rep)

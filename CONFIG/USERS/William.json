@@ -1,10 +1,11 @@
 {
-	"appelation":"Willy"
+	"username":"Willy",
 	"prenom":"William",
 	"nom":"Bouhaik",
 	"datenNaissance":"14/01/2000",
-	"adresse":"Résidence la voie du sud, B1"
-	"ville":"longjuemau"
-	"cp":"91160"
+	"lieuNaissance": "Pontoise",
+	"adresse":"Residence la voie du sud, B1",
+	"ville":"longjuemau",
+	"cp":"91160",
 	"mail":"killeryear@hotmail.fr"
 }

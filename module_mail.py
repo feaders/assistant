@@ -14,11 +14,11 @@ def sendEmail(to, content):
     server.close()
 
 
-def sendAttestation(filename):
+def sendAttestation(filename, mail):
     subject = "Attestation"
     body = "Voici ton attestation ;)"
     sender_email = "billyassitantboi@gmail.com"
-    receiver_email = "skullfeaders@gmail.com"
+    receiver_email = mail
     password = "6ZGLBfi8xahUuL4"
 
     # Create a multipart message and set headers

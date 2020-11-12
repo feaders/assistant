@@ -1,11 +1,13 @@
-from reportlab.pdfgen import  canvas
+from reportlab.pdfgen import canvas
 from datetime import datetime
 import pyqrcode
 import module_mail as mm
+import module_users
 
 dt_stamp = datetime.now()
 image = "canvas.png"
 imageQr = "qr.png"
+
 
 def genrerAttestation(text):
     raisons = {
@@ -27,13 +29,15 @@ def genrerAttestation(text):
         if r in text:
             croix.append(raisons[r])
 
-    nom = "William"
-    prenom = "Bouhaik"
-    datenaiss = "14/01/2000"
-    lieuxnaiss = "Pontoise"
-    adresse = "Résidence la voie du sud"
-    ville = "Longjumeau"
-    cp = "91160"
+    user=module_users.getUser(text)
+
+    nom = user.nom
+    prenom = user.prenom
+    datenaiss = user.datenNaissance
+    lieuxnaiss = user.lieuNaissance
+    adresse = user.adresse
+    ville = user.ville
+    cp = user.cp
     date = str(dt_stamp.strftime('%d/%m/%Y'))
     heure = str(dt_stamp.strftime("%H:%M"))
 
@@ -71,5 +75,5 @@ def genrerAttestation(text):
     pdf.drawImage(imageQr, 435, 110, 92, 92)
 
     pdf.save()
-    mm.sendAttestation(nomFichier)
+    mm.sendAttestation(nomFichier, user.mail)
     return "attestation générer"

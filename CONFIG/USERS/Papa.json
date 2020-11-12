@@ -1,10 +1,11 @@
 {
-	"appelation":"papa"
+	"username":"papa",
 	"prenom":"Antoine",
 	"nom":"Bouhaik",
 	"datenNaissance":"01/03/1973",
-	"adresse":"Résidence la voie du sud, B1"
-	"ville":"longjuemau"
-	"cp":"91160"
+	"lieuNaissance": "Antony",
+	"adresse":"Residence la voie du sud, B1",
+	"ville":"longjuemau",
+	"cp":"91160",
 	"mail":"killeryear@hotmail.fr"
 }
