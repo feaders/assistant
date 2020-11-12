@@ -5,17 +5,14 @@ import pyttsx3
 import random
 import time
 
-
-
 import module_users as mu
 import module_spotify as ms
 import module_attestation as ma
 import module_tools as mt
-import CONFIG
+import config
 
 print('Initialisation')
 mu.loadUsers()
-
 
 active = True
 engine = pyttsx3.init()
@@ -28,7 +25,6 @@ def audio():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         audio = r.listen(source)
-
     data = ''
     try:
         data = r.recognize_google(audio, None, "fr-FR")
@@ -70,6 +66,7 @@ def extinction():
     reponse(random.choice(formulesReponse))
     print("je m'eteint")
 
+
 print("billy prêt")
 reponse("je suis prêt")
 
@@ -90,7 +87,7 @@ while active == True:
         elif 'extinction' in text:
             extinction()
             break
-        elif 'spotify' in text or CONFIG.getConfig().spotify == False:
+        elif 'spotify' in text or config.getConfig().spotify == False:
             rep += ms.commande(text)
 
     if rep != '':

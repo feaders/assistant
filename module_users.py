@@ -1,6 +1,6 @@
 import json
 import os
-import CONFIG
+import config
 
 USERS=[]
 dir="./CONFIG/USERS/"
@@ -35,11 +35,11 @@ def getUser(text):
     mots = text.split()
     for m in mots:
         for x in USERS:
-            if x.username == m:
+            if x.username.lower() == m:
                 return x
     return getDefault()
 
 def getDefault():
     for x in USERS:
-        if x.username == CONFIG.getConfig().user:
+        if x.username == config.getConfig().user.lower():
             return x

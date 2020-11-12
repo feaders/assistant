@@ -6,9 +6,7 @@ class conf:
         self.user = user
         self.spotify = spotify
 
-CONFIG=conf()
 conf_dict = json.loads((open(dir+"Default.json", "r")).read())
 CONFIG= conf(**conf_dict)
-
 def getConfig():
     return CONFIG

@@ -8,25 +8,27 @@ sp = spotipy.Spotify(client_credentials_manager=SpotifyOAuth(scope=scope))
 
 def commande(text):
     print("module spotify")
-    if "suivante" in text or "suivant" in text or "suivante" in text:
+    if "suivante" in text or "suivant" in text:
         print("suivante")
         sp.next_track()
-    elif "précédente" in text or "précédent" in text or "précédente" in text:
+    elif "précédente" in text or "précédent" in text:
         print("précedente")
         sp.previous_track()
     elif "pause" in text or "ârrete" in text or "coupe" in text or "pose" in text:
         print("pause")
-        sp.pause_playback()
+        if sp.current_user_playing_track()["is_playing"]:
+            sp.pause_playback()
         return "musique coupé"
     elif "reprend" in text or "lance" in text:
         print("lance")
-        sp.start_playback()
+        if not sp.current_user_playing_track()["is_playing"]:
+            sp.start_playback()
         return "musique lancé"
     elif "son" in text or "volume" in text:
         volume(text)
     elif "recherche" in text:
         return recherche(text)
-    elif ("qui" in text and "est") or ("nom" in text and("musique" in text or "chanson" in text)):
+    elif ("qui" in text and "est") or ("nom" in text and ("musique" in text or "chanson" in text)):
         return info()
     return ""
 
